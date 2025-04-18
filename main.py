@@ -2,22 +2,23 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import json
+import os
 
 # === CONFIGURATION ===
 
 URL_SITE = "https://jobs.extracadabra.com/paris"
 INTERVALLE_VERIF_SECONDES = 2  # Vérifie toutes les 60 secondes
 
-TOKEN_BOT_TELEGRAM = "7956901922:AAEV-kgxv0B78DVcDqPhBfRKf_HNyLW-5fg"
-ID_TELEGRAM_UTILISATEUR = "2017104381"
+TOKEN_BOT = os.getenv("TOKEN_BOT")
+ID_CHAT_TELEGRAM = os.getenv("ID_CHAT_TELEGRAM")
 
 FICHIER_OFFRES_VUES = "offres_vues.json"  # Pour mémoriser les missions déjà envoyées
 
 # === FONCTION : Envoyer un message via Telegram ===
 def envoyer_message_telegram(texte):
-    url_api = f"https://api.telegram.org/bot{TOKEN_BOT_TELEGRAM}/sendMessage"
+    url_api = f"https://api.telegram.org/bot{TOKEN_BOT}/sendMessage"
     donnees = {
-        "chat_id": ID_TELEGRAM_UTILISATEUR,
+        "chat_id": ID_CHAT_TELEGRAM,
         "text": texte,
         "parse_mode": "HTML"
     }
