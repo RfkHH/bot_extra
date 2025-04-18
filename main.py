@@ -88,6 +88,8 @@ def surveiller_site():
     while True:
         print("🔍 Vérification des nouvelles missions...")
         nouvelles_missions = recuperer_missions()
+        message = ("test")
+        envoyer_message_telegram(message)
 
         # Filtrer les missions qu’on n’a jamais vues
         missions_non_vues = [m for m in nouvelles_missions if m["id"] not in offres_deja_envoyees]
