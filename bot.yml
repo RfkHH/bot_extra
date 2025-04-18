@@ -1,0 +1,24 @@
+name: Bot Extracadabra
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # toutes les 1 minutes
+  workflow_dispatch:  # permet de lancer manuellement aussi
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Configurer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Exécuter le bot
+        run: python bot.py
